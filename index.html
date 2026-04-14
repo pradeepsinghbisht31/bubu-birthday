@@ -1,1 +1,198 @@
-file:///C:/Users/HP-PC/Desktop/BUBU.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BUBU 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Comic Sans MS", cursive;
+    text-align: center;
+    background: linear-gradient(to right, #ffd6e8, #d6f0ff);
+    overflow: hidden;
+}
+
+/* Pages with smooth transition */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s ease-in-out;
+    padding-top: 50px;
+}
+
+.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Buttons */
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    background-color: #ff99cc;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 0 10px #ff66b2;
+}
+button:hover {
+    background-color: #ff66b2;
+    transform: scale(1.1);
+}
+
+/* Text */
+h1 { color: #ff4da6; text-shadow: 0 0 10px white; }
+p { font-size: 20px; }
+.cute { font-size: 40px; }
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: #ff4da6;
+    animation: floatUp 5s linear infinite;
+}
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* BIG CAKE EMOJI */
+.big-cake {
+    font-size: 180px;
+    margin-top: 40px;
+    animation: bounce 1s infinite, glow 2s infinite alternate;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px pink; }
+    to { text-shadow: 0 0 30px hotpink; }
+}
+
+/* Message */
+.message {
+    font-size: 24px;
+    color: #ff3399;
+    background: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    animation: fall 3s linear infinite;
+}
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* Floating hearts */
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*30) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}, 300);
+</script>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>Happy Birthday My BUBU 🎂💖</h1>
+    <p>From DUDU 💕</p>
+    <div class="cute">🧸 🐰 🌸 💖</div>
+    <p>You are the cutest girl ever 🥺💗</p>
+    <button onclick="nextPage(2)">Next 👉</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>Make a Wish 🎂</h1>
+
+    <div class="big-cake">🎂</div>
+
+    <p style="font-size:22px;">Blow the candle my BUBU 🥺💖</p>
+
+    <button onclick="nextPage(3)">Blow Candle 🕯️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h1>Hehe look 😚</h1>
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="220">
+    <p>Happy Birthday BUBU 🎵💖</p>
+
+    <audio id="song" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+    <button onclick="playSong()">Play Song 🎶</button><br>
+    <button onclick="nextPage(4)">Next 👉</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>I have something for you 😳💖</h1>
+    <button onclick="nextPage(5); confetti()">Something Special 💌</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+    <h1>For My BUBU 💖</h1>
+    <div class="message">
+        HAPPY BIRTHDAY MY SWEET LITTLE CUTIE PATOOTIIIIIEEEEEEEEEEEEEEEE ✨♥️♥️✨ <br><br>
+        I WILL BE ALWAYS WITH YOU NO MATTER WHAT HAPPENS 💕 <br><br>
+        TUM MERI MUTKI BUBU SWEEETYYYYYYY JUST BE WITH ME ALWAYS MERA BACHAA 🐣🐥 <br><br>
+        I LOVE YOU BUBU ♥️♥️
+    </div>
+    <div class="cute">🐰🎀💖🧸</div>
+</div>
+
+<script>
+function nextPage(pageNumber) {
+    let current = document.querySelector('.active');
+    current.classList.remove('active');
+
+    let next = document.getElementById('page' + pageNumber);
+    next.classList.add('active');
+}
+
+function playSong() {
+    document.getElementById("song").play();
+}
+
+function confetti() {
+    for (let i = 0; i < 120; i++) {
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random()*100 + "vw";
+        conf.style.background = ["red","pink","yellow","blue"][Math.floor(Math.random()*4)];
+        conf.style.animationDuration = (2 + Math.random()*3) + "s";
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>
